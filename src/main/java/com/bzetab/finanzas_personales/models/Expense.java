@@ -22,4 +22,14 @@ public class Expense {
     private String description;
     @UpdateTimestamp
     private LocalDate date;
+
+    //Relationship with ExpenseCategory
+    @ManyToOne
+    @JoinColumn(name = "expense_category_id", nullable = false)
+    private ExpenseCategory expenseCategory;
+
+    //Relationship with Account
+    @ManyToOne
+    @JoinColumn(name = "account_id", nullable = false)
+    private Account account;
 }

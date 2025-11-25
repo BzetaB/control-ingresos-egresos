@@ -21,4 +21,14 @@ public class Income {
     private Double amount;
     @UpdateTimestamp
     private LocalDate date;
+
+    //Relationship with IncomeSource
+    @ManyToOne
+    @JoinColumn(name = "income_source_id", nullable = false)
+    private IncomeSource incomeSource;
+
+    //Relationship with Account
+    @ManyToOne
+    @JoinColumn(name = "account_id", nullable = false)
+    private Account account;
 }

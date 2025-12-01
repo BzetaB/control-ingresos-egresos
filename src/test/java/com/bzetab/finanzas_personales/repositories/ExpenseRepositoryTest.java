@@ -77,9 +77,7 @@ public class ExpenseRepositoryTest {
                 .account(accountTest)
                 .build();
 
-        assertThrows(Exception.class, () -> {
-            expenseRepository.saveAndFlush(expenseCategoryNull);
-        });
+        assertThrows(Exception.class, () -> expenseRepository.saveAndFlush(expenseCategoryNull));
     }
 
     @Test
@@ -91,9 +89,7 @@ public class ExpenseRepositoryTest {
                 .description("Gasto sin cuenta")
                 .build();
 
-        assertThrows(Exception.class, () -> {
-            expenseRepository.saveAndFlush(expenseAccountNull);
-        });
+        assertThrows(Exception.class, () -> expenseRepository.saveAndFlush(expenseAccountNull));
     }
 
     @Test
@@ -105,15 +101,13 @@ public class ExpenseRepositoryTest {
                 .account(accountTest)
                 .build();
 
-        assertThrows(Exception.class, () -> {
-            expenseRepository.saveAndFlush(invalid);
-        });
+        assertThrows(Exception.class, () -> expenseRepository.saveAndFlush(invalid));
     }
 
     @Test
     @DisplayName("No debería eliminar una categoría si tiene expenses asociados")
     void shouldNotDeleteCategoryIfExpensesExist() {
-        Expense savedExpense = expenseRepository.save(expenseTest);
+        expenseRepository.save(expenseTest);
 
         assertThrows(Exception.class, () -> {
             expenseCategoryRepository.delete(expenseCategoryTest);
